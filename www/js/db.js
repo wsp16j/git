@@ -1,6 +1,6 @@
 // This is a JavaScript file
 
-//時・分・秒を取得する
+//時・分・秒を取得する---debug用
 function getTime(){
     var jikan= new Date();
     var hour = jikan.getHours();
@@ -21,7 +21,7 @@ function insertQuery(tx){
         console.log("id:" + siteID + " / pw:" + sitePW);
         tx.executeSql('INSERT INTO TestTable (id, data) VALUES (?, ?)', [siteID, sitePW]);
     }else{
-        window.alert("idまたはPWがnullです");
+        window.alert("idまたはPWが空欄です");
     }
 }
 
@@ -56,6 +56,13 @@ function errorCB(err) {
 function successCB() {
     window.alert("success");
     console.log(getTime() + "successCB");
+    var db = window.openDatabase("Database", "1.0", "TestDatabase", 200000);
+    db.transaction(queryDB, errorCB);
+}
+
+function testDB() {
+    window.alert("test");
+    console.log(getTime() + "testDB");
     var db = window.openDatabase("Database", "1.0", "TestDatabase", 200000);
     db.transaction(queryDB, errorCB);
 }
