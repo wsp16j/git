@@ -35,16 +35,6 @@ function queryDB(tx) {
     tx.executeSql('SELECT * FROM TestTable ORDER BY ct', [], querySuccess, errorCB);
 }
 
-function querySuccess(tx, results) {
-    console.log(getTime() + " querySuccess");
-    var len = results.rows.length;
-    console.log("There are " + len + " rows of records in the database.");
-    for (var i=0; i<len; i++){
-        console.log(results.rows.item(i).ct + " " + results.rows.item(i).id + " " + results.rows.item(i).data);
-//        showTodo(row.id, row.data); 
-    }
-}
-
 //Callback function when the transaction is failed.
 function errorCB(err) {
     window.alert("error");
@@ -61,7 +51,6 @@ function successCB() {
 }
 
 function testDB() {
-    window.alert("test");
     console.log(getTime() + "testDB");
     var db = window.openDatabase("Database", "1.0", "TestDatabase", 200000);
     db.transaction(queryDB, errorCB);
@@ -77,4 +66,21 @@ function insertDB(){
     console.log(getTime() + "insertDB");
     var db = window.openDatabase("Database", "1.0", "TestDatabase", 200000);
     db.transaction(insertQuery, errorCB, successCB);
+}
+
+function querySuccess(tx, results) {
+    console.log(getTime() + " querySuccess");
+    var len = results.rows.length;
+    var ct;
+    var id;
+    var data;
+    console.log("There are " + len + " rows of records in the database.");
+    for (var i=0; i<len; i++){
+        ct = results.rows.item(i).ct;
+        id = results.rows.item(i).id;
+        data = results.rows.item(i).data;
+        addLine(ct, id, data);
+        
+        console.log(ct + " " + id + " " + data);
+    }
 }

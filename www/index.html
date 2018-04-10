@@ -17,12 +17,11 @@
         document.addEventListener('show', function(event) {
             var page = event.target;
             var titleElement = document.querySelector('#toolbar-title');
-            
             if (page.matches('#first-page')) {
                 titleElement.innerHTML = 'My app - Page 1';
             } else if (page.matches('#second-page')) {
                 titleElement.innerHTML = 'My app - Page 2';
-                addLine();
+                testDB();
             }
         });
     </script>
@@ -54,21 +53,8 @@
 
   <ons-template id="tab2.html">
     <ons-page id="second-page">
-      <p style="text-align: center;">パスワード一覧. </p>
-    <table id="table">
-        <thead>
-            <tr>
-                <th>No</th>
-                <th>Todo</th>
-                <th></th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-        <!-- TODOを追加していく -->
-        </tbody>
-    </table>
-    <div id="piyo"></div>
+        <p style="text-align: center;">パスワード一覧. </p>
+        <div id="piyo"></div>
     </ons-page>
   </ons-template>
 </body>
