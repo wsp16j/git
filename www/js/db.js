@@ -83,4 +83,5 @@ function querySuccess(tx, results) {
         
         console.log(ct + " " + id + " " + data);
     }
+    addbutton();
 }
